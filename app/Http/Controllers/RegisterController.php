@@ -12,7 +12,7 @@ class RegisterController extends Controller
     {
         if (!isset($_POST['name']) or !isset($_POST['email']) or !isset($_POST['password'])) 
         {
-            return $this->error(400, 'Debes rellenar todos los campos');
+            return $this->error(401, 'Debes rellenar todos los campos');
         }
 
         $name = $_POST['name'];
@@ -36,14 +36,14 @@ class RegisterController extends Controller
                 }
                 catch(Exception $e)
                 {
-                    return $this->error(402, $e->getMessage());
+                    return $this->error(401, $e->getMessage());
                 }
             
                 return $this->error(200, 'Registro completo');
             }
             else
             {
-                return $this->error(401, 'Parametros no correctos');
+                return $this->error(400, 'Parametros no correctos');
             }
         }
         else

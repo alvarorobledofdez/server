@@ -13,7 +13,7 @@ class LoginController extends Controller
     {
         if (!isset($_POST['email']) or !isset($_POST['password'])) 
         {
-            return $this->error(400, 'Debes rellenar todos los campos')->header('Access-Control-Allow-Origin', '*');
+            return $this->error(401, 'Debes rellenar todos los campos')->header('Access-Control-Allow-Origin', '*');
         }
 
         $email = $_POST['email'];
@@ -36,7 +36,7 @@ class LoginController extends Controller
         }
         else
         {
-            return response("Los datos no son correctos", 402)->header('Access-Control-Allow-Origin', '*');
+            return response("Los datos no son correctos", 401)->header('Access-Control-Allow-Origin', '*');
         }
     }   
 }

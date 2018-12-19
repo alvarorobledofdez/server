@@ -35,45 +35,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if (!isset($_POST['name']) or !isset($_POST['email']) or !isset($_POST['password'])) 
-        {
-            return $this->error(1, 'No puede haber campos vacíos');
-        }
-
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        if (!empty($name) && !empty($email) && !empty($password))
-        {
-            try
-            {
-                $users = new User();
-                $users->name = $name;
-                $users->password = $password;
-                $users->email = $email;
-                $users->save();
-            }
-            catch(Exception $e)
-            {
-                return $this->error(2, $e->getMessage());
-            }
-            
-            return $this->error(0, 'Usuario registrado');
-        }
-        else
-        {
-            return $this->error(1, 'No puede haber campos vacíos');
-        }
+        //
     }
-
-    private function error($code, $message)
-    {
-        $json = ['code' => $code, 'message' => $message];
-        $json = json_encode($json);
-        return  response($json, 200)->header('Access-Control-Allow-Origin', '*');
-    
-    }
-
     /**
      * Display the specified resource.
      *
